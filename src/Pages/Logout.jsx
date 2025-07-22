@@ -1,8 +1,8 @@
-const Language=()=>{
+const Logout=()=>{
     return(
         <div>
 
         </div>
     )
 }
-export default Language
+export default Logout

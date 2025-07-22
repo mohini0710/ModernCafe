@@ -1,8 +1,9 @@
-const EditProfile=()=>{
+const Customer =()=>{
     return(
         <div>
 
         </div>
     )
+
 }
-export default EditProfile
+export default Customer

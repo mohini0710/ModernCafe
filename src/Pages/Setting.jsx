@@ -1,8 +1,8 @@
-const Favorite=()=>{
+const Setting=()=>{
     return(
         <div>
 
         </div>
     )
 }
-export default Favorite
+export default Setting
