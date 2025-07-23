@@ -3,7 +3,8 @@ import Sidebar from "../Components/Sidebar";
 import { useState, useEffect } from "react";
 import { infoContents } from "../menuData";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Dashboard = () => {
  
 const navigate = useNavigate();
@@ -27,19 +28,33 @@ const navigate = useNavigate();
       }
       return [...prev, { ...item, quantity: 1 }];
     });
+      toast.success(` ${item.name} added!`, { transition: Bounce });
   };
 
   return (
     <div className="">
       
       <Header />
+         <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Bounce}
+        limit={3}
+      />
       <div className="flex">
          <div className="fixed  h-screen w-48 bg-white shadow-md overflow-y-auto ">
-    
+   
     <Sidebar />
   </div>
         
-        <div className="min-h-screen w-full bg-gray-200 flex flex-col items-center p-4 ml-[180px]">
+        <div className="min-h-screen w-full bg-gray-300 flex flex-col items-center p-4 ml-[180px]">
  
           <div className="flex space-x-6 mb-6 mt-[20px]">
             {Object.entries(infoContents).map(([key, { title, icon }]) => (
@@ -59,7 +74,7 @@ const navigate = useNavigate();
             <h2 className="text-2xl font-semibold mb-4 mt-[30px]">{infoContents[active].title}</h2>
 
             
-            <div className="grid grid-cols-5 flex mt-[30px] gap-[30px] ">
+            <div className="grid grid-cols-5 flex mt-[30px] gap-[30px] ml-[10px] mr-[10px]">
               {infoContents[active].items.map((item, index) => (
                 <div key={index} className="flex flex-col items-center bg-gray-50  rounded-lg shadow-md w-[160px] h-[210px]">
                   <img src={item.image} alt={item.name} className="w-[170px] h-[110px] rounded-t-md object-cover mb-4" />
