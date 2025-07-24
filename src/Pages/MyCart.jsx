@@ -1,13 +1,43 @@
 
 
-import  { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useReactToPrint } from 'react-to-print';
 import html2canvas from 'html2canvas';
+
 import jsPDF from 'jspdf';
 
 
 const TAX_RATE = 0.05;
+const Receipt = forwardRef(({  discountPct, customerName, paymentMode }, ref) => {
+  const subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const tax = subtotal * TAX_RATE;
+  const discount = subtotal * (discountPct / 100);
+  const total = subtotal + tax - discount;
+
+  return (
+    <div ref={ref} style={{ padding: 20, background: '#fff', width: 300 }}>
+      <h2>HolyNow Coffee House</h2>
+      <p><strong>Customer:</strong> {customerName || 'N/A'}</p>
+      <p><strong>Payment:</strong> {paymentMode}</p>
+      <hr/>
+      <ul>
+        {cart.map(item => (
+          <li key={item.id}>
+            {item.name} × {item.quantity} = ₹{(item.price * item.quantity).toFixed(2)}
+          </li>
+        ))}
+      </ul>
+      <hr/>
+      <p>Subtotal: ₹{subtotal.toFixed(2)}</p>
+      <p>Tax (5%): ₹{tax.toFixed(2)}</p>
+      <p>Discount: -₹{discount.toFixed(2)}</p>
+      <h3>Total: ₹{total.toFixed(2)}</h3>
+    </div>
+  );
+});
+Receipt.displayName = 'Receipt';
+
 const MyCart = () => {
     const [discountPct, setDiscountPct] = useState(0);
     const [showSummary, setShowSummary] = useState(false);
@@ -42,7 +72,7 @@ const removeFromCart = (id) => {
   const grandTotal = subtotal + tax - discount;
    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const total = cart.reduce((sum, i) => sum + (i.price || 0) * i.quantity, 0);
- const receiptRef = useRef();
+ 
   const handleDownloadPDF = async () => {
     const element = receiptRef.current;
     if (!element) return;
@@ -58,6 +88,14 @@ const removeFromCart = (id) => {
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save('receipt.pdf');
   };
+ const receiptRef = useRef(null);
+
+ 
+  const handlePrint = useReactToPrint({
+    contentRef: receiptRef,
+    documentTitle: 'Receipt',
+  });
+
 
   return (
     <div className="p-8 ">
@@ -207,7 +245,7 @@ const removeFromCart = (id) => {
           >
             Cancel
           </button>
-
+          
           <button
             onClick={() => {
               setCheckoutOpen(false);
@@ -251,6 +289,9 @@ const removeFromCart = (id) => {
               </div>
 
               <div className="mt-4 flex justify-between">
+                 <button onClick={() => handlePrint()} className="bg-blue-600 text-white px-4 py-2 rounded">
+              Print Bill
+            </button>
                 <button onClick={() => setShowReceipt(false)} className="px-4 py-2 text-gray-600 border rounded">Close</button>
                 <button onClick={handleDownloadPDF} className="px-4 py-2 bg-green-600 text-white rounded">Download Receipt</button>
               </div>

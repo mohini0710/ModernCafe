@@ -5,6 +5,7 @@ import { infoContents } from "../menuData";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Dashboard = () => {
  
 const navigate = useNavigate();
@@ -28,13 +29,13 @@ const navigate = useNavigate();
       }
       return [...prev, { ...item, quantity: 1 }];
     });
-      toast.success(` ${item.name} added!`, { transition: Bounce });
+      toast.success(` ${item.name} added to cart!`, { transition: Bounce });
   };
-
+  
   return (
     <div className="">
       
-      <Header />
+      <Header  />
          <ToastContainer
         position="top-right"
         autoClose={1000}
@@ -48,6 +49,7 @@ const navigate = useNavigate();
         transition={Bounce}
         limit={3}
       />
+     
       <div className="flex">
          <div className="fixed  h-screen w-48 bg-white shadow-md overflow-y-auto ">
    
