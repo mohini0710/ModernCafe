@@ -125,12 +125,13 @@ function Setting() {
   ];
 
   return (
+    
     <div className="w-[700px] ml-[50px] mx-auto pt-[50px] space-y-5 ">
       
       <h1 className="text-3xl font-semibold mb-4">Settings</h1>
       {sections.map((sec, i) => (
         <details key={i} className="border rounded">
-          <summary className="cursor-pointer px-4 py-2 bg-grey-100 hover:bg-gray-200">
+          <summary className="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200">
             {sec.title}
           </summary>
           <div className="px-4 py-4">

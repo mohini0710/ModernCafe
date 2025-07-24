@@ -4,7 +4,16 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      
+       colors: {
+        'chocolate-orange': {
+          DEFAULT: '#D2691E',      // base color
+          600: '#B05028',          // darker variant
+          400: '#E07B3E',          // lighter variant
+        },
+      },
+    },
   },
   plugins: [],
 }

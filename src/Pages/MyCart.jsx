@@ -269,7 +269,7 @@ const removeFromCart = (id) => {
             <div className="bg-white p-6 rounded-lg shadow-lg w-[500px] pl-[30px] max-h-[90vh] overflow-auto">
               <div ref={receiptRef}>
                
-                <h2 className="text-2xl font-bold mb-4 text-red-600">HolyNow Coffee House</h2>
+                <h2 className="text-2xl font-bold mb-4 text-red-600">HolyCow Coffee House</h2>
                  <p className='font-bold mb-[5px]'>Receipt</p>
                 <p><strong>Customer:</strong> {customerName || 'N/A'}</p>
                 <p><strong>Payment Mode:</strong> {paymentMode}</p>

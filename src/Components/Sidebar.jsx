@@ -14,7 +14,7 @@ const Sidebar = () => (
        
        <li className='flex items-center'>
         <img className='h-[20px] mt-[10px]' src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" />
-        <Link to="/customer" className="block py-2 px-4 hover:text-red-600 mt-[10px]">customer</Link>
+        <Link to="/customer" className="block py-2 px-4 hover:text-red-600 mt-[10px]">About Us</Link>
 
       </li>
       <li className='flex items-center'>
