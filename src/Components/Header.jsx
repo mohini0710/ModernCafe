@@ -40,7 +40,7 @@ export default function Header({
         {hasNotifications && (
           <span className="absolute top-1 right-1 inline-flex h-2 w-2 rounded-full bg-red-600"></span>
         )}
-       <img className="h-[50px]" src="https://thumbs.dreamstime.com/b/bell-icon-design-vector-button-sign-symbol-logo-image-eps-jpg-picture-flat-app-web-art-isolated-white-background-192653651.jpg" alt="" />
+       <img className="h-[50px] rounded-full" src="https://thumbs.dreamstime.com/b/bell-icon-design-vector-button-sign-symbol-logo-image-eps-jpg-picture-flat-app-web-art-isolated-white-background-192653651.jpg" alt="" />
       </button>
     </header>
   );
