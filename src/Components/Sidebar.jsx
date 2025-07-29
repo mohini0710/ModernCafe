@@ -19,7 +19,7 @@ const Sidebar = () => (
       </li>
       <li className='flex items-center'>
        <h1 className='mt-[10px]'>✉</h1>
-        <Link  className="block py-2 px-4 hover:text-red-600 mt-[10px]">View Receipt</Link>
+        <Link to="/view-all-receipts"  className="block py-2 px-4 hover:text-red-600 mt-[10px]">View Receipt</Link>
 
       </li>
       

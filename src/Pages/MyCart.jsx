@@ -4,6 +4,8 @@ import  { useState, useEffect, useRef, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
 import html2canvas from 'html2canvas';
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
 
 import jsPDF from 'jspdf';
 
@@ -45,6 +47,24 @@ const MyCart = () => {
     const [customerName, setCustomerName] = useState('');
     const [paymentMode, setPaymentMode] = useState('Cash');
     const [showReceipt, setShowReceipt] = useState(false);
+    const [receipts, setReceipts] = useLocalStorage('receipts', []);
+    const handleGenerate = () => {
+    setCheckoutOpen(false);
+    setShowReceipt(true);
+    const receipt = {
+      id: Date.now(),
+      date: new Date().toISOString(),
+      customerName,
+      paymentMode,
+      items: cart.map(i => ({ id: i.id, name: i.name, price: i.price, quantity: i.quantity })),
+      subtotal,
+      tax,
+      discountPct,
+      total: grandTotal
+    };
+    setReceipts(prev => [...prev, receipt]);
+  };
+  
   const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem('cart')) || []);
 const removeFromCart = (id) => {
     const updatedCart = cart.filter(item => item.id !== id);
@@ -247,14 +267,11 @@ const removeFromCart = (id) => {
           </button>
           
           <button
-            onClick={() => {
-              setCheckoutOpen(false);
-              setShowReceipt(true);
-            }}
-            className="px-4 py-2 bg-blue-600 text-white rounded"
-          >
-            Generate Bill
-          </button>
+                  onClick={handleGenerate} 
+                  className="px-4 py-2 bg-blue-600 text-white rounded"
+                >
+                  Generate Bill
+                </button>
          </div>
         </div>
        </div>

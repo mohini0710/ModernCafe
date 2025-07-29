@@ -17,8 +17,7 @@ export default function Header({
 
   return (
     <header className="flex items-center justify-between px-4  bg-white shadow-md sticky top-0 z-50">
-      
-
+     
        <img className="h-[80px]" src="https://images-platform.99static.com//gi3zuQFBxv68-6zf1BMQ7Cmqz5E=/0x0:960x960/fit-in/500x500/99designs-contests-attachments/142/142215/attachment_142215435" alt="" />
       
       <div className="flex-1 max-w-lg mx-4 relative">

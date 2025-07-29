@@ -5,6 +5,8 @@ import MyCart from './Pages/MyCart';
 import HelpCenter from './Pages/HelpCenter';
 import Logout from './Pages/Logout';
 import Setting from './Pages/Setting';
+import ViewAllReceipts from './Pages/ViewAllReceipts';
+
 
 function App() {
  return (
@@ -20,6 +22,8 @@ function App() {
          <Route path="/helpCenter" element={<HelpCenter />} /> 
           <Route path="/Logout" element={<Logout />} /> 
            <Route path="/setting" element={<Setting />} /> 
+            <Route path="/view-all-receipts" element={<ViewAllReceipts />} /> 
+             
     </Routes>
     </>
   )
